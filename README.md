@@ -42,3 +42,9 @@ Activity的最长执行时间是5秒，BroadcastReceiver的最长执行时间则
 通过 WebViewClient 的shouldOverrideUrlLoading ()方法回调拦截 url（使用复杂：需要协议的约束；从Native层往Web层传递值比较繁琐，使用场景：不需要返回值情况下的互调场景）
 通过 WebChromeClient 的onJsAlert()、onJsConfirm()、onJsPrompt（）方法回调拦截JS对话框alert()、confirm()、prompt（） 消息（使用复杂：需要协议的约束；能满足大多数情况下的互调场景）
 
+#### Git传错文件，如何处理
+git filter-branch --tree-filter 'rm -f 文件名' HEAD把文件彻底从库中删除
+场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，使用git reset --hard HEAD^
+
