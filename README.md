@@ -32,3 +32,13 @@ android:theme="@android:style/Theme.Dialog"
 ### ANR是什么，怎么解决，Activity几秒，service几秒
 应用程序无响应
 Activity的最长执行时间是5秒，BroadcastReceiver的最长执行时间则是10秒。service20秒
+#### webview和js交互（https://www.jianshu.com/p/345f4d8a5cfa）
+对于Android调用JS代码的方法有2种：
+通过WebView的loadUrl（）（方便简洁，效率低下，获取返回值麻烦；使用场景：不需要获取返回值，对性能要求较低）
+通过WebView的evaluateJavascript（）（效率高，向下兼容性差，使用场景：Android4.4以上）
+
+对于JS调用Android代码的方法有3种：
+通过WebView的addJavascriptInterface（）进行对象映射（方便简洁，Android4.2一下存在漏洞，使用场景：Android4.2以上相对简单互调场景）
+通过 WebViewClient 的shouldOverrideUrlLoading ()方法回调拦截 url（使用复杂：需要协议的约束；从Native层往Web层传递值比较繁琐，使用场景：不需要返回值情况下的互调场景）
+通过 WebChromeClient 的onJsAlert()、onJsConfirm()、onJsPrompt（）方法回调拦截JS对话框alert()、confirm()、prompt（） 消息（使用复杂：需要协议的约束；能满足大多数情况下的互调场景）
+
